@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "highlights": {
+      "type": "highlights",
+      "settings": {}
+    },
+    "menu": {
+      "type": "menu",
+      "settings": {}
+    },
+    "about": {
+      "type": "about",
+      "settings": {}
+    },
+    "reviews": {
+      "type": "reviews",
+      "settings": {}
+    },
+    "catering": {
+      "type": "catering",
+      "settings": {}
+    },
+    "location": {
+      "type": "location",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "highlights",
+    "menu",
+    "about",
+    "reviews",
+    "catering",
+    "location"
+  ]
+}
