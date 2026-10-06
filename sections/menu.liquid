@@ -1,0 +1,80 @@
+<!-- Interactive Digital Menu Section -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag"><i class="fa-solid fa-fire text-red"></i> TASTE THE REAL DEAL</span>
+      <h2 class="section-title">THE STREET FOOD MENU</h2>
+      <p class="section-desc">Tap any item to add to your direct order cart. Freshly prepared to order.</p>
+    </div>
+
+    <!-- Menu Category Tabs -->
+    <div class="menu-filter-tabs">
+      <button class="filter-tab active" data-category="all">
+        <i class="fa-solid fa-border-all"></i> All Items
+      </button>
+      <button class="filter-tab" data-category="dogs">
+        <i class="fa-solid fa-hotdog"></i> Chicago Dogs
+      </button>
+      <button class="filter-tab" data-category="beef">
+        <i class="fa-solid fa-drumstick-bite"></i> Italian Beef
+      </button>
+      <button class="filter-tab" data-category="burgers">
+        <i class="fa-solid fa-burger"></i> Smash Burgers
+      </button>
+      <button class="filter-tab" data-category="polish">
+        <i class="fa-solid fa-bacon"></i> Maxwell Polish
+      </button>
+      <button class="filter-tab" data-category="sides">
+        <i class="fa-solid fa-cookie"></i> Fries & Sides
+      </button>
+      <button class="filter-tab" data-category="drinks">
+        <i class="fa-solid fa-glass-water"></i> Drinks & Shakes
+      </button>
+    </div>
+
+    <!-- Menu Grid -->
+    <div class="menu-grid" id="menuGrid">
+      {% comment %}
+        If the store has products uploaded in Shopify Admin, render them seamlessly:
+      {% endcomment %}
+      {% if collections['all'].products.size > 0 %}
+        {% for product in collections['all'].products limit: 12 %}
+          <div class="menu-card">
+            <div class="menu-card-img-wrap">
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="menu-card-img" loading="lazy">
+              {% else %}
+                <img src="https://images.unsplash.com/photo-1619740455993-9e612b1af08a?auto=format&fit=crop&w=700&q=80" alt="{{ product.title | escape }}" class="menu-card-img" loading="lazy">
+              {% endif %}
+              <span class="menu-tag tag-bestseller">Shopify Fresh</span>
+            </div>
+            <div class="menu-card-body">
+              <div class="menu-card-title-row">
+                <h3 class="menu-item-title">{{ product.title }}</h3>
+                <span class="menu-item-price">{{ product.price | money }}</span>
+              </div>
+              <p class="menu-item-desc">{{ product.description | strip_html | truncatewords: 25 }}</p>
+              <div class="menu-card-footer">
+                <span class="item-ingredients">Authentic Recipe • Handcrafted</span>
+                <form method="post" action="/cart/add" style="display:inline;">
+                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                  <button type="submit" class="add-to-cart-btn">
+                    <i class="fa-solid fa-plus"></i> Add to Order
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      {% comment %} theme.js handles rendering if no Shopify products exist yet {% endcomment %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Menu Section",
+  "settings": []
+}
+{% endschema %}

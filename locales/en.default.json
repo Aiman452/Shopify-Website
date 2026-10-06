@@ -1,0 +1,14 @@
+{
+  "general": {
+    "cart": {
+      "title": "Your Direct Order",
+      "empty": "Your bag is currently empty.",
+      "subtotal": "Subtotal",
+      "checkout": "Proceed to Direct Checkout"
+    },
+    "menu": {
+      "order_online": "Order Online",
+      "add_to_order": "Add to Order"
+    }
+  }
+}

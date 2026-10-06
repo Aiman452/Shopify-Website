@@ -1,0 +1,33 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Chicago Paulies Premium",
+    "theme_version": "1.0.0",
+    "theme_author": "Growth Vault Media",
+    "theme_documentation_url": "https://github.com",
+    "theme_support_url": "https://github.com"
+  },
+  {
+    "name": "General Settings",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement Bar Text",
+        "default": "4.9 ★ Rating (500+ Google Reviews) — Tampa's #1 Authentic Chicago Spot!"
+      },
+      {
+        "type": "text",
+        "id": "phone_number",
+        "label": "Phone Number",
+        "default": "(813) 555-0192"
+      },
+      {
+        "type": "text",
+        "id": "address_text",
+        "label": "Store Address",
+        "default": "1301 N Howard Ave, Tampa, FL"
+      }
+    ]
+  }
+]

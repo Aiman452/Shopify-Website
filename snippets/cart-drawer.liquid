@@ -1,0 +1,60 @@
+<!-- Slide-out Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <div class="cart-title">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <h3>Your Direct Order</h3>
+    </div>
+    <button class="close-cart-btn" id="closeCartBtn" aria-label="Close Cart">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <div class="cart-items-container" id="cartItemsList">
+    {% if cart.item_count == 0 %}
+      <div class="empty-cart-state">
+        <i class="fa-solid fa-basket-shopping empty-icon"></i>
+        <p>Your bag is currently empty.</p>
+        <span>Add some delicious Chicago classics from the menu!</span>
+      </div>
+    {% else %}
+      {% for item in cart.items %}
+        <div class="cart-item-row">
+          {% if item.image %}
+            <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title | escape }}" class="cart-item-thumb">
+          {% endif %}
+          <div class="cart-item-details">
+            <h4 class="cart-item-name">{{ item.product.title }}</h4>
+            <span class="cart-item-price">{{ item.price | money }} ea</span>
+          </div>
+          <div class="cart-qty-ctrls">
+            <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" class="qty-btn">−</a>
+            <span><strong>{{ item.quantity }}</strong></span>
+            <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" class="qty-btn">+</a>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="cart-drawer-footer" id="cartFooter" {% if cart.item_count == 0 %}style="display: none;"{% endif %}>
+    <div class="cart-summary-line">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">{{ cart.total_price | money }}</span>
+    </div>
+    <div class="cart-summary-line savings-line">
+      <span><i class="fa-solid fa-tags text-green"></i> 3rd Party Fees Saved</span>
+      <span class="text-green" id="cartSavings">Commission Free</span>
+    </div>
+    <div class="cart-summary-line total-line">
+      <span>Estimated Total</span>
+      <span id="cartTotal" class="total-amount">{{ cart.total_price | money }}</span>
+    </div>
+
+    <a href="/checkout" class="btn btn-primary btn-block btn-glow btn-checkout" id="checkoutBtn" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+      <i class="fa-solid fa-lock"></i> Proceed to Direct Checkout
+    </a>
+    <span class="direct-badge"><i class="fa-solid fa-shield-halved"></i> 100% Commission-Free & Direct to Kitchen</span>
+  </div>
+</aside>

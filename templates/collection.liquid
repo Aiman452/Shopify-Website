@@ -1,0 +1,35 @@
+<div class="container" style="padding: 6rem 1.5rem 4rem;">
+  <div class="section-header">
+    <h1 class="section-title">{{ collection.title }}</h1>
+    {% if collection.description != blank %}
+      <p class="section-desc">{{ collection.description }}</p>
+    {% endif %}
+  </div>
+
+  <div class="menu-grid">
+    {% for product in collection.products %}
+      <div class="menu-card">
+        <div class="menu-card-img-wrap">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" class="menu-card-img" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-card-title-row">
+            <h3 class="menu-item-title">{{ product.title }}</h3>
+            <span class="menu-item-price">{{ product.price | money }}</span>
+          </div>
+          <p class="menu-item-desc">{{ product.description | strip_html | truncatewords: 20 }}</p>
+          <div class="menu-card-footer">
+            <form method="post" action="/cart/add" style="width: 100%;">
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+              <button type="submit" class="add-to-cart-btn" style="width: 100%; justify-content: center;">
+                <i class="fa-solid fa-plus"></i> Add to Order
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

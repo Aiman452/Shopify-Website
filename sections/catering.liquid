@@ -1,0 +1,39 @@
+<!-- Catering & Party Platter Section -->
+<section class="catering-section" id="catering">
+  <div class="container catering-card">
+    <div class="catering-content">
+      <span class="section-tag"><i class="fa-solid fa-champagne-glasses text-gold"></i> FEED YOUR CROWD</span>
+      <h2>HOSTING AN EVENT, GAME DAY, OR OFFICE LUNCH?</h2>
+      <p>
+        We cater hot Italian beef pans by the pound with fresh rolls, sweet peppers, spicy giardiniera, and full hot dog party bars for gatherings from 10 to 200+ people.
+      </p>
+      
+      <form class="catering-form" id="cateringForm">
+        <div class="form-row">
+          <input type="text" id="catName" placeholder="Your Name" required>
+          <input type="email" id="catEmail" placeholder="Email Address" required>
+        </div>
+        <div class="form-row">
+          <input type="tel" id="catPhone" placeholder="Phone / WhatsApp" required>
+          <input type="number" id="catGuests" placeholder="Estimated Guests (e.g. 25)" required>
+        </div>
+        <div class="form-row">
+          <input type="date" id="catDate" required>
+          <button type="submit" class="btn btn-primary btn-block">
+            <i class="fa-solid fa-paper-plane"></i> Request Catering Quote
+          </button>
+        </div>
+      </form>
+      <div id="cateringSuccessMsg" class="success-message" style="display: none;">
+        <i class="fa-solid fa-circle-check text-green"></i> Thank you! Your catering inquiry has been received. We will contact you within 2 hours.
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Catering Section",
+  "settings": []
+}
+{% endschema %}
